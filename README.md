@@ -1,12 +1,14 @@
-# PO Meesterproef — Starterproject
+# PO Meesterproef — Week 2 Starter (HTML/CSS)
 
 Startertemplate (HTML/CSS + Flask) voor de PO Meesterproef "Bouw een Maatschappelijke Webapp".
-Dit is de **week 2**-versie: HTML/CSS basis + GitHub inrichten. Database en koppeling volgen in week 3/4.
+Dit is de **week 2**-versie: HTML/CSS basis + GitHub inrichten. Database (week 3) en koppeling (week 4) volgen later via aparte template-repo's.
+
+> Dit is een **template repository**. Klik op **"Use this template"** → **"Create a new repository"** om je eigen kopie te maken. Daarna werk je in jouw eigen repo.
 
 ## Wat zit erin?
 
 ```
-POMeesterproef/
+pomeesterproef-week2/
 ├── app.py              # Flask-app (route "/" toont index.html)
 ├── database.py         # Placeholder voor de database (week 3)
 ├── requirements.txt    # Python-dependencies
@@ -15,8 +17,6 @@ POMeesterproef/
 ├── static/
 │   ├── css/style.css   # Basis styling
 │   └── js/script.js    # JavaScript (wordt later toegevoegd)
-├── doc/
-│   └── PO Meesterproef.pdf
 └── .gitignore
 ```
 
@@ -28,7 +28,20 @@ POMeesterproef/
 
 ## Project starten (lokaal)
 
-Open een terminal in de projectmap en voer uit:
+> **Let op:** `git clone` maakt de map automatisch aan. Je hoeft dus **geen** map zelf aan te maken. Na het clonen ga je de map in.
+
+Stappen:
+1. Clone (maakt de map aan):
+   ```bash
+   git clone git@github.com:jouwnaam/pomeesterproef-jouwnaam.git
+   ```
+2. Ga de nieuwe map in:
+   ```bash
+   cd pomeesterproef-jouwnaam
+   ```
+   Controleer dat je in de map zit waar `app.py` staat (`ls` / `dir`).
+
+Daarna in die map uitvoeren:
 
 ```bash
 # 1. Virtuele omgeving aanmaken
@@ -51,8 +64,6 @@ Open daarna http://127.0.0.1:5000 in je browser.
 
 ## Git voor beginners — stap voor stap
 
-Je hebt nog nooit met een git-repository gewerkt? Geen probleem. Volg deze stappen.
-
 ### 1. Git installeren
 
 - **Linux (Ubuntu/Debian):** `sudo apt install git`
@@ -67,8 +78,6 @@ git --version
 
 ### 2. Je identiteit instellen (éénmalig)
 
-Git heeft je naam en e-mail nodig voor commits:
-
 ```bash
 git config --global user.name "Jouw Naam"
 git config --global user.email "jouw@email.nl"
@@ -76,193 +85,67 @@ git config --global user.email "jouw@email.nl"
 
 ### 3. SSH-key instellen (public key in je GitHub-profiel)
 
-GitHub accepteert geen wachtwoord meer voor git-push. Je gebruikt een **SSH-key** (een sleutelpaar: private key op je computer, public key in je GitHub-profiel).
+GitHub accepteert geen wachtwoord meer voor git-push. Je gebruikt een **SSH-key**.
 
-#### Stap 3a — Controleer of je al een key hebt
+#### 3a — Controleer of je al een key hebt
 
-**macOS / Linux (Terminal):**
 ```bash
 ls ~/.ssh/id_ed25519.pub
 ```
 
-**Windows (Git Bash):**
-```bash
-ls ~/.ssh/id_ed25519.pub
-```
+Als het bestand bestaat, ga naar stap 3c.
 
-Als het bestand bestaat, ga naar stap 3c. Zo niet, ga door.
+#### 3b — Een nieuwe SSH-key maken
 
-#### Stap 3b — Een nieuwe SSH-key maken
-
-**macOS / Linux (Terminal) en Windows (Git Bash):**
 ```bash
 ssh-keygen -t ed25519 -C "jouw@email.nl"
 ```
 
-- Druk Enter bij "Enter file in which to save..." (standaardlocatie).
-- Druk Enter bij "Enter passphrase" (of typ een wachtwoordzin als je dat wilt; onthoud hem dan wel).
+Druk Enter bij de vragen (standaardlocatie, geen passphrase of onthoud hem).
 
-Dit maakt twee bestanden in `~/.ssh/`: `id_ed25519` (private, **nooit delen**) en `id_ed25519.pub` (public, mag je delen).
+#### 3c — Public key kopiëren
 
-**Windows (PowerShell, zonder Git Bash):**
-```powershell
-ssh-keygen -t ed25519 -C "jouw@email.nl"
-```
-Het bestand komt in `C:\\Users\\<jouwnaam>\\.ssh\\`.
+- **macOS:** `pbcopy < ~/.ssh/id_ed25519.pub`
+- **Linux:** `cat ~/.ssh/id_ed25519.pub` (selecteer en kopieer)
+- **Windows (Git Bash):** `clip < ~/.ssh/id_ed25519.pub`
+- **Windows (PowerShell):** `Get-Content $env:USERPROFILE\.ssh\id_ed25519.pub | Set-Clipboard`
 
-#### Stap 3c — Public key kopiëren
+#### 3d — Public key toevoegen aan je GitHub-profiel
 
-**macOS:**
-```bash
-pbcopy < ~/.ssh/id_ed25519.pub
-```
+1. GitHub → rechtsboven avatar → **Settings** → **SSH and GPG keys**.
+2. **New SSH key** → plak de key → **Add SSH key**.
 
-**Linux:**
-```bash
-cat ~/.ssh/id_ed25519.pub
-# selecteer en kopieer de hele regel (begint met ssh-ed25519)
-```
-
-**Windows (Git Bash):**
-```bash
-clip < ~/.ssh/id_ed25519.pub
-```
-
-**Windows (PowerShell):**
-```powershell
-Get-Content $env:USERPROFILE\.ssh\id_ed25519.pub | Set-Clipboard
-```
-
-#### Stap 3d — Public key toevoegen aan je GitHub-profiel
-
-1. Ga naar https://github.com en log in.
-2. Klik rechtsboven op je avatar → **Settings**.
-3. Links in het menu: **SSH and GPG keys**.
-4. Klik **New SSH key**.
-5. **Title:** geef een naam, bijv. "MacBook school" of "Windows laptop".
-6. **Key type:** Authentication Key.
-7. **Key:** plak de gekopieerde public key (Ctrl+V / Cmd+V).
-8. Klik **Add SSH key**. Bevestig eventueel met je wachtwoord.
-
-#### Stap 3e — Test de verbinding
+#### 3e — Test de verbinding
 
 ```bash
 ssh -T git@github.com
 ```
 
-Antwoord (eerste keer): typ `yes` en Enter. Je ziet dan:
-```
-Hi jouwnaam! You've successfully authenticated, but GitHub does not provide shell access.
-```
-Dat is goed — het werkt!
+Je ziet: `Hi jouwnaam! You've successfully authenticated...` → werkt!
 
-### 4. Deze starter-repo clonen
+### 4. Jouw eigen repo maken (via template)
 
-"Clonen" betekent: een kopie van de repo naar je eigen computer halen. Gebruik de **SSH-URL** (begint met `git@github.com:`):
+De docent-repo is een **template**: https://github.com/ehijzengsf/pomeesterproef-week2
 
-```bash
-git clone git@github.com:<organisatie>/pomeesterproef-starter.git
-cd POMeesterproef
-```
-
-> Vervang `<organisatie>` door wat de docent opgeeft (bijv. `git@github.com:arhc/pomeesterproef-starter.git`).
-> Als de docent een HTTPS-link geeft, gebruik je die; dan wordt om je GitHub-wachtwoord/PAT gevraagd.
-
-### 5. Een eigen repo maken op basis van deze code
-
-Je wilt straks je eigen code opslaan in **jouw eigen** repository, niet in die van de docent. Doe het zo:
-
-**Stap A — Maak een nieuwe (lege) repo op GitHub**
-
-1. Ga naar https://github.com en log in.
-2. Klik op **New repository** (groene knop, rechtsboven of op je profiel).
+1. Open die link in je browser.
+2. Klik op de groene knop **"Use this template"** → **"Create a new repository"**.
 3. Geef een naam, bijv. `pomeesterproef-jouwnaam`.
 4. Kies **Private** (of Public, zoals de docent aangeeft).
-5. **Vink NIET** "Initialize with README" aan (we hebben al code).
-6. Klik **Create repository**.
-7. Op de volgende pagina zie je een SSH-URL, bijv. `git@github.com:jouwnaam/pomeesterproef-jouwnaam.git`. Kopieer die.
+5. Klik **Create repository**.
 
-**Stap B — Koppel je lokale map aan jouw nieuwe repo**
-
-Open een terminal in je projectmap (waar `app.py` staat) en voer uit:
+Nu heb je je eigen repo. Clone die:
 
 ```bash
-# Verwijder de link naar de starter-repo van de docent
-git remote remove origin
-
-# Koppel aan jouw eigen repo (SSH-URL)
-git remote add origin git@github.com:jouwnaam/pomeesterproef-jouwnaam.git
-
-# (optioneel) controleer
-git remote -v
+git clone git@github.com:jouwnaam/pomeesterproef-jouwnaam.git
+cd pomeesterproef-jouwnaam
 ```
-
-**Stap C — Eerste commit en push**
-
-```bash
-git add .
-git commit -m "Start: week 2 starterproject"
-git branch -M main
-git push -u origin main
-```
-
-Nu staat jouw code op GitHub! 🎉
-
-> Let op: de eerste `git push` kan vragen om de host-key te accepteren. Typ `yes` en Enter.
-
-### 4. Een eigen repo maken op basis van deze code
-
-Je wilt straks je eigen code opslaan in **jouw eigen** repository, niet in die van de docent. Doe het zo:
-
-**Stap A — Maak een nieuwe (lege) repo op GitHub**
-
-1. Ga naar https://github.com en log in (of maak een account).
-2. Klik op **New repository** (groene knop).
-3. Geef een naam, bijv. `pomeesterproef-jouwnaam`.
-4. Kies **Private** (of Public, zoals de docent aangeeft).
-5. **Vink NIET** "Initialize with README" aan (we hebben al code).
-6. Klik **Create repository**.
-7. Kopieer de URL die GitHub toont (bijv. `https://github.com/jouwnaam/pomeesterproef-jouwnaam.git`).
-
-**Stap B — Koppel je lokale map aan jouw nieuwe repo**
-
-Open een terminal in je projectmap (waar `app.py` staat) en voer uit:
-
-```bash
-# Verwijder de link naar de starter-repo van de docent
-git remote remove origin
-
-# Koppel aan jouw eigen repo
-git remote add origin https://github.com/jouwnaam/pomeesterproef-jouwnaam.git
-
-# (optioneel) controleer
-git remote -v
-```
-
-**Stap C — Eerste commit en push**
-
-```bash
-git add .
-git commit -m "Start: week 2 starterproject"
-git branch -M main
-git push -u origin main
-```
-
-Nu staat jouw code op GitHub! 🎉
 
 ### 5. Basis-workflow (elke keer dat je werkt)
 
 ```bash
-# Status bekijken
 git status
-
-# Wijzigingen klaarzetten
 git add .
-
-# Opslaan met een bericht
 git commit -m "Beschrijf wat je hebt gedaan"
-
-# Uploaden naar GitHub
 git push
 ```
 
@@ -272,42 +155,50 @@ git push
 |---|---|
 | `git status` | Wat is er veranderd? |
 | `git log --oneline` | Geschiedenis van commits |
-| `git pull` | Nieuwe wijzigingen van GitHub ophalen |
+| `git pull` | Nieuwe wijzigingen ophalen |
 | `git diff` | Verschillen bekijken |
-| `git restore <bestand>` | Wijziging in een bestand ongedaan maken |
+| `git restore <bestand>` | Wijziging ongedaan maken |
 
-### 7. Veelgemaakte fouten (en oplossingen)
+### 7. Veelgemaakte fouten
 
-- **"fatal: not a git repository"** → Je staat niet in de projectmap. Gebruik `cd` om ernaar toe te gaan.
-- **"Authentication failed"** → Gebruik een Personal Access Token (PAT) in plaats van je wachtwoord. Zie GitHub Docs → "Creating a personal access token".
-- **Merge conflict** → Vraag de docent of een klasgenoot om hulp; dit komt later in de cursus.
+- **"fatal: not a git repository"** → Je staat niet in de projectmap (`cd`).
+- **"Permission denied (publickey)"** → SSH-key niet geregistreerd (zie stap 3).
+- **Merge conflict** → Vraag de docent om hulp.
 
-## Versies per week (organisatie)
+## Samenwerken in een groepje van 2
 
-De docent beheert deze startercode per week via **branches**:
+Werken jullie met z'n tweeën aan één project? Doe het zo:
 
-- `week-2` — huidige versie (HTML/CSS basis) ← je begint hier
-- `week-3` — week 2 + database (.sql starter + `database.py`)
-- `week-4` — week 3 + koppeling (formulier → database)
+1. **Eén persoon** maakt de repo aan via "Use this template" en kiest een naam, bijv. `pomeesterproef-jouwnaam1-en-jouwnaam2`.
+2. Die persoon voegt de ander toe als **collaborator**: repo → **Settings** → **Collaborators** → **Add people** → vul de GitHub-gebruikersnaam van je partner in → **Add**.
+3. Je partner accepteert de uitnodiging (e-mail of via GitHub → "You have been invited").
+4. **Beide** clonen dezelfde repo:
+   ```bash
+   git clone git@github.com:<eigenaar>/pomeesterproef-jouwnaam1-en-jouwnaam2.git
+   cd pomeesterproef-jouwnaam1-en-jouwnaam2
+   ```
+5. **Werkafspraak (belangrijk!):**
+   - Doe altijd eerst `git pull` voordat je begint.
+   - Werk niet tegelijk aan hetzelfde bestand.
+   - Commit en push regelmatig met duidelijke berichten.
+   - Bij een conflict: overleg en los samen op, of vraag de docent.
 
-### Welke versie ophalen?
+> Tip: werk in aparte bestanden (bijv. één persoon HTML/CSS, de ander database) om conflicten te voorkomen.
 
-```bash
-# Lijst van branches bekijken
-git branch -a
+## Versies per week
 
-# Naar een andere week wisselen (bijv. week 3)
-git checkout week-3
-# of (nieuwere git-versies):
-git switch week-3
-```
+Elke week krijg je een **nieuwe template-repo** van de docent:
 
-> Tip: maak eerst een commit van je eigen werk voordat je wisselt van branch, anders raak je wijzigingen kwijt.
+- **Week 2** (deze repo) — HTML/CSS basis
+- **Week 3** — week 2 + database (.sql starter)
+- **Week 4** — week 3 + koppeling formulier → database
+
+Je hoeft niet van branch te wisselen; je maakt een nieuwe repo via "Use this template".
 
 ## .gitignore
 
-Bestanden die **niet** in git thuishoren (zoals de virtuele omgeving `.venv/` en de database `*.db`) staan al in `.gitignore`. Voeg er zelf niets aan toe dat geheim is (wachtwoorden, API-keys).
+Bestanden die niet in git thuishoren (`.venv/`, `*.db`) staan al in `.gitignore`.
 
 ## Hulp
 
-Loop je vast? Zet de taak op 'Showstopper' en neem dit mee naar het Daltonuur. De docent helpt je persoonlijk.
+Loop je vast? Zet de taak op 'Showstopper' en neem dit mee naar het Daltonuur.
