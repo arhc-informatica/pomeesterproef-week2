@@ -1,7 +1,8 @@
 # PO Meesterproef — Week 2 Starter (HTML/CSS)
 
-Startertemplate (HTML/CSS + Flask) voor de PO Meesterproef "Bouw een Maatschappelijke Webapp".
+Startertemplate (HTML/CSS + Flask) voor de PO Meesterproef.
 Dit is de **week 2**-versie: HTML/CSS basis + GitHub inrichten. Database (week 3) en koppeling (week 4) volgen later via aparte template-repo's.
+Je mag een eigen onderwerp kiezen.
 
 > Dit is een **template repository**. Klik op **"Use this template"** → **"Create a new repository"** om je eigen kopie te maken. Daarna werk je in jouw eigen repo.
 
@@ -20,6 +21,14 @@ pomeesterproef-week2/
 └── .gitignore
 ```
 
+## Opdrachten (week 2)
+
+- Pas de CSS aan met kleuren en fonts zoals je die hebt bedacht in je ontwerp.
+- Breid de HTML uit zodat het je homepage van de app gaat worden.
+- Maak een nieuwe pagina voor een van je pagina's zoals je die in je ontwerp hebt bedacht. Maak een route naar de pagina. Zorg dat de algemene CSS in je pagina zit.
+- Maak een menu en zorg voor links naar de homepage en naar je nieuwe pagina.
+- **Let op je taalgebruik:** zorg voor duidelijke koppen en korte, foutloze zinnen die passen bij jouw doelgroep.
+
 ## Vereisten
 
 - Python 3.10 of hoger
@@ -28,16 +37,17 @@ pomeesterproef-week2/
 
 ## Project starten (lokaal)
 
-> **Let op:** `git clone` maakt de map automatisch aan. Je hoeft dus **geen** map zelf aan te maken. Na het clonen ga je de map in.
+> **Let op:** Maak eerst je **eigen repo** aan via "Use this template" (zie stap 4) en deel hem met je partner (zie "Samenwerken in een groepje van 2"). Daarna kun je de **template (week 2)** ook als **voorbeeld** in een nieuwe map clonen om code uit te kopiëren.
 
-Stappen:
-1. Clone (maakt de map aan):
+Stappen voor het voorbeeld (week 2 template):
+1. Maak een nieuwe map aan en ga erin:
    ```bash
-   git clone git@github.com:jouwnaam/pomeesterproef-jouwnaam.git
+   mkdir pomeesterproef-week2-voorbeeld
+   cd pomeesterproef-week2-voorbeeld
    ```
-2. Ga de nieuwe map in:
+2. Clone de template in deze map:
    ```bash
-   cd pomeesterproef-jouwnaam
+   git clone git@github.com:arhc-informatica/pomeesterproef-week2.git .
    ```
    Controleer dat je in de map zit waar `app.py` staat (`ls` / `dir`).
 
@@ -61,6 +71,8 @@ python app.py
 ```
 
 Open daarna http://127.0.0.1:5000 in je browser.
+
+> **Werken in je eigen project:** je eigen repo (`pomeesterproef-jouwnaam`) maak je aan via "Use this template" (stap 4) en deel je met je partner. Kopieer code uit het voorbeeld naar je eigen project, commit en push daarna in je eigen repo.
 
 ## Git voor beginners — stap voor stap
 
@@ -123,9 +135,12 @@ ssh -T git@github.com
 
 Je ziet: `Hi jouwnaam! You've successfully authenticated...` → werkt!
 
-### 4. Jouw eigen repo maken (via template)
+### 4. Jouw eigen repo maken (via template) — op de GitHub-website
 
-De docent-repo is een **template**: https://github.com/ehijzengsf/pomeesterproef-week2
+> **Let op:** dit doe je in je **browser** op de GitHub-website, niet in de terminal.
+> Werk je **niet alleen** maar met z'n tweeën? Zie de paragraaf **"Samenwerken in een groepje van 2"** (één persoon maakt de repo, de ander wordt collaborator).
+
+De docent-repo is een **template**: git@github.com:arhc-informatica/pomeesterproef-week2.git
 
 1. Open die link in je browser.
 2. Klik op de groene knop **"Use this template"** → **"Create a new repository"**.
@@ -169,8 +184,8 @@ git push
 
 Werken jullie met z'n tweeën aan één project? Doe het zo:
 
-1. **Eén persoon** maakt de repo aan via "Use this template" en kiest een naam, bijv. `pomeesterproef-jouwnaam1-en-jouwnaam2`.
-2. Die persoon voegt de ander toe als **collaborator**: repo → **Settings** → **Collaborators** → **Add people** → vul de GitHub-gebruikersnaam van je partner in → **Add**.
+1. **Eén persoon** maakt de repo aan via "Use this template" **op de GitHub-website** (browser, niet terminal) en kiest een naam, bijv. `pomeesterproef-jouwnaam1-en-jouwnaam2`.
+2. Die persoon voegt de ander (en eventueel de docent) toe als **collaborator**: repo → **Settings** → **Collaborators** → **Add people** → vul de GitHub-gebruikersnaam van je partner (en van de docent) in → **Add**.
 3. Je partner accepteert de uitnodiging (e-mail of via GitHub → "You have been invited").
 4. **Beide** clonen dezelfde repo:
    ```bash
@@ -185,16 +200,6 @@ Werken jullie met z'n tweeën aan één project? Doe het zo:
 
 > Tip: werk in aparte bestanden (bijv. één persoon HTML/CSS, de ander database) om conflicten te voorkomen.
 
-## Versies per week
-
-Elke week krijg je een **nieuwe template-repo** van de docent:
-
-- **Week 2** (deze repo) — HTML/CSS basis
-- **Week 3** — week 2 + database (.sql starter)
-- **Week 4** — week 3 + koppeling formulier → database
-
-Je hoeft niet van branch te wisselen; je maakt een nieuwe repo via "Use this template".
-
 ## .gitignore
 
 Bestanden die niet in git thuishoren (`.venv/`, `*.db`) staan al in `.gitignore`.
@@ -202,3 +207,31 @@ Bestanden die niet in git thuishoren (`.venv/`, `*.db`) staan al in `.gitignore`
 ## Hulp
 
 Loop je vast? Zet de taak op 'Showstopper' en neem dit mee naar het Daltonuur.
+
+### Routes
+
+Een **route** is een koppeling tussen een URL (adres in de browser) en een Python-functie in je Flask-app. Wanneer een bezoeker een bepaalde URL opent, voert Flask de gekoppelde functie uit en stuurt het resultaat (bijv. een HTML-pagina) terug. Zo kun je meerdere pagina's maken zonder aparte HTML-bestanden handmatig te serveren.
+
+Kijk op W3Schools: **Python → Flask → Routes** (https://www.w3schools.com/python/python_flask.asp).
+
+### Pagina's
+
+Nieuwe HTML-pagina's voeg je toe in de map `templates/` (bijv. `templates/nieuwepagina.html`). In Flask verwijs je ernaar met `render_template('nieuwepagina.html')` in de bijbehorende route. Zorg dat de algemene CSS ook in die pagina zit (via `{% extends %}` of door dezelfde `<link>` naar `static/css/style.css`).
+
+Kijk op W3Schools: **Python → Flask → Templates** (https://www.w3schools.com/python/python_flask.asp).
+
+### Menu
+
+Een eenvoudig menu maak je met een `<nav>`-element met een `<ul>` van `<li>`-items, waarbij elke `<li>` een `<a href="...">` bevat naar de betreffende route (bijv. `/` en `/nieuwepagina`). Style het menu in je CSS (bijv. horizontaal met `display: flex`).
+
+Kijk op W3Schools: **HTML → Navigation / CSS → Navbar** (https://www.w3schools.com/css/css_navbar.asp).
+
+### Virtuele omgeving (venv)
+
+Een **virtuele omgeving** isoleert de Python-pakketten van je project, zodat ze niet botsen met andere projecten.
+
+- Aanmaken: `python3 -m venv .venv`
+- Activeren (Linux/macOS): `source .venv/bin/activate`
+- Activeren (Windows PowerShell): `.venv\Scripts\Activate.ps1`
+- Dependencies installeren: `pip install -r requirements.txt`
+- De map `.venv/` staat in `.gitignore` en wordt dus niet naar GitHub gestuurd.
