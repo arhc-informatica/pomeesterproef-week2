@@ -4,7 +4,7 @@ Startertemplate (HTML/CSS + Flask) voor de PO Meesterproef.
 Dit is de **week 2**-versie: HTML/CSS basis + GitHub inrichten. Database (week 3) en koppeling (week 4) volgen later via aparte template-repo's.
 Je mag een eigen onderwerp kiezen.
 
-> Dit is een **template repository**. Klik op **"Use this template"** → **"Create a new repository"** om je eigen kopie te maken. Daarna werk je in jouw eigen repo.
+> Dit is een **voorbeeld-template**. Je maakt hieruit geen nieuwe repo; je clonet hem in een nieuwe map als voorbeeld en kopieert code naar je eigen (lege) repo.
 
 ## Wat zit erin?
 
@@ -37,15 +37,16 @@ pomeesterproef-week2/
 
 ## Project starten (lokaal)
 
-> **Let op:** Maak eerst je **eigen repo** aan via "Use this template" (zie stap 4) en deel hem met je partner (zie "Samenwerken in een groepje van 2"). Daarna kun je de **template (week 2)** ook als **voorbeeld** in een nieuwe map clonen om code uit te kopiëren.
+> **Let op:** Maak eerst een **nieuwe lege repo** op GitHub en deel hem met je partner (zie stap 4). Daarna clone je die naar je laptop. De **template (week 2)** gebruik je als **voorbeeld** in een nieuwe map; daaruit kopieer je de code naar je eigen repo.
 
 Stappen voor het voorbeeld (week 2 template):
+- Template-repo (open in browser om te vinden): https://github.com/arhc-informatica/pomeesterproef-week2
 1. Maak een nieuwe map aan en ga erin:
    ```bash
    mkdir pomeesterproef-week2-voorbeeld
    cd pomeesterproef-week2-voorbeeld
    ```
-2. Clone de template in deze map:
+2. Clone de template in deze map (SSH):
    ```bash
    git clone git@github.com:arhc-informatica/pomeesterproef-week2.git .
    ```
@@ -135,25 +136,26 @@ ssh -T git@github.com
 
 Je ziet: `Hi jouwnaam! You've successfully authenticated...` → werkt!
 
-### 4. Jouw eigen repo maken (via template) — op de GitHub-website
+### 4. Jouw eigen (lege) repo maken — op de GitHub-website
 
 > **Let op:** dit doe je in je **browser** op de GitHub-website, niet in de terminal.
-> Werk je **niet alleen** maar met z'n tweeën? Zie de paragraaf **"Samenwerken in een groepje van 2"** (één persoon maakt de repo, de ander wordt collaborator).
 
-De docent-repo is een **template**: git@github.com:arhc-informatica/pomeesterproef-week2.git
-
-1. Open die link in je browser.
-2. Klik op de groene knop **"Use this template"** → **"Create a new repository"**.
-3. Geef een naam, bijv. `pomeesterproef-jouwnaam`.
-4. Kies **Private** (of Public, zoals de docent aangeeft).
+1. Ga naar GitHub → **New repository** (of "+" → New repository).
+2. Geef een naam, bijv. `pomeesterproef-jouwnaam` (of `pomeesterproef-jouwnaam1-en-jouwnaam2` bij samenwerken).
+3. Kies **Private** (of Public, zoals de docent aangeeft).
+4. **Laat "Initialize with README" uit** (lege repo).
 5. Klik **Create repository**.
 
-Nu heb je je eigen repo. Clone die:
+**Samenwerken?** Voeg je partner (en docent) toe als collaborator: repo → **Settings** → **Collaborators** → **Add people**.
+
+Clone daarna je eigen (lege) repo naar je laptop:
 
 ```bash
 git clone git@github.com:jouwnaam/pomeesterproef-jouwnaam.git
 cd pomeesterproef-jouwnaam
 ```
+
+Kopieer vervolgens de bestanden uit het **voorbeeld** (week 2 template) in deze map, commit en push.
 
 ### 5. Basis-workflow (elke keer dat je werkt)
 
@@ -184,7 +186,7 @@ git push
 
 Werken jullie met z'n tweeën aan één project? Doe het zo:
 
-1. **Eén persoon** maakt de repo aan via "Use this template" **op de GitHub-website** (browser, niet terminal) en kiest een naam, bijv. `pomeesterproef-jouwnaam1-en-jouwnaam2`.
+1. **Eén persoon** maakt een **nieuwe lege repo** aan **op de GitHub-website** (browser, niet terminal) en kiest een naam, bijv. `pomeesterproef-jouwnaam1-en-jouwnaam2`.
 2. Die persoon voegt de ander (en eventueel de docent) toe als **collaborator**: repo → **Settings** → **Collaborators** → **Add people** → vul de GitHub-gebruikersnaam van je partner (en van de docent) in → **Add**.
 3. Je partner accepteert de uitnodiging (e-mail of via GitHub → "You have been invited").
 4. **Beide** clonen dezelfde repo:
